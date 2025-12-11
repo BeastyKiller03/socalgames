@@ -353,11 +353,22 @@
             <div class="input-wrapper">
               <select id="platformSelect">
                 <option value="">All platforms</option>
+                <option value="NES">NES</option>
+                <option value="SNES">SNES</option>
+                <option value="N64">Nintendo 64</option>
                 <option value="GameCube">GameCube</option>
+                <option value="Wii">Wii</option>
+                <option value="GBA">Game Boy Advance</option>
+                <option value="DS">Nintendo DS</option>
+                <option value="3DS">Nintendo 3DS</option>
+                <option value="PS1">PlayStation</option>
                 <option value="PS2">PlayStation 2</option>
                 <option value="PS3">PlayStation 3</option>
                 <option value="PS4">PlayStation 4</option>
                 <option value="Switch">Nintendo Switch</option>
+                <option value="PSP">PSP</option>
+                <option value="Xbox">Xbox</option>
+                <option value="Xbox 360">Xbox 360</option>
               </select>
             </div>
           </div>
@@ -401,7 +412,7 @@
         name: "Retro Vault LA",
         city: "Los Angeles",
         area: "Koreatown",
-        tags: ["Retro", "Imports", "PS2", "GameCube"],
+        tags: ["Retro", "Imports", "PS2", "GameCube", "Nintendo"],
       },
       {
         id: "inland-games-riv",
@@ -421,62 +432,70 @@
 
     // Each entry = one listing of a game in a store
     const inventory = [
-      {
-        title: "Super Smash Bros. Melee",
-        platform: "GameCube",
-        condition: "CIB (Complete in Box)",
-        price: 79.99,
-        storeId: "retro-vault-la"
-      },
-      {
-        title: "Super Smash Bros. Melee",
-        platform: "GameCube",
-        condition: "Disc only",
-        price: 64.99,
-        storeId: "inland-games-riv"
-      },
-      {
-        title: "Silent Hill 2",
-        platform: "PS2",
-        condition: "Very Good",
-        price: 119.99,
-        storeId: "retro-vault-la"
-      },
-      {
-        title: "Silent Hill 2",
-        platform: "PS2",
-        condition: "Good (Greatest Hits)",
-        price: 89.99,
-        storeId: "inland-games-riv"
-      },
-      {
-        title: "The Last of Us Remastered",
-        platform: "PS4",
-        condition: "Like New",
-        price: 19.99,
-        storeId: "oc-byte-exch"
-      },
-      {
-        title: "Mario Kart 8 Deluxe",
-        platform: "Switch",
-        condition: "New (Sealed)",
-        price: 54.99,
-        storeId: "oc-byte-exch"
-      },
-      {
-        title: "Metal Gear Solid 3: Snake Eater",
-        platform: "PS2",
-        condition: "CIB (Complete in Box)",
-        price: 49.99,
-        storeId: "retro-vault-la"
-      },
-      {
-        title: "God of War III",
-        platform: "PS3",
-        condition: "Very Good",
-        price: 14.99,
-        storeId: "inland-games-riv"
-      }
+      // ==== RETRO VAULT LA: BIG INVENTORY ====
+      { title: "Super Mario Bros. 3", platform: "NES",  condition: "Cart only",              price: 24.99, storeId: "retro-vault-la" },
+      { title: "The Legend of Zelda", platform: "NES",  condition: "Cart only",              price: 29.99, storeId: "retro-vault-la" },
+      { title: "Castlevania III: Dracula's Curse", platform: "NES", condition: "Cart only", price: 59.99, storeId: "retro-vault-la" },
+
+      { title: "Chrono Trigger",      platform: "SNES", condition: "CIB (Complete in Box)",  price: 199.99, storeId: "retro-vault-la" },
+      { title: "Super Metroid",       platform: "SNES", condition: "Cart only",              price: 89.99,  storeId: "retro-vault-la" },
+      { title: "EarthBound",          platform: "SNES", condition: "Cart only",              price: 249.99, storeId: "retro-vault-la" },
+
+      { title: "Mario Kart 64",       platform: "N64",  condition: "Cart only",              price: 54.99,  storeId: "retro-vault-la" },
+      { title: "The Legend of Zelda: Ocarina of Time", platform: "N64", condition: "CIB",   price: 119.99, storeId: "retro-vault-la" },
+      { title: "Super Smash Bros.",   platform: "N64",  condition: "Cart only",              price: 79.99,  storeId: "retro-vault-la" },
+
+      { title: "Super Smash Bros. Melee", platform: "GameCube", condition: "CIB (Player's Choice)", price: 79.99, storeId: "retro-vault-la" },
+      { title: "Paper Mario: The Thousand-Year Door", platform: "GameCube", condition: "CIB", price: 149.99, storeId: "retro-vault-la" },
+      { title: "Metroid Prime",      platform: "GameCube", condition: "CIB",                 price: 59.99,  storeId: "retro-vault-la" },
+
+      { title: "The Legend of Zelda: Twilight Princess", platform: "Wii", condition: "CIB",  price: 49.99,  storeId: "retro-vault-la" },
+      { title: "Super Mario Galaxy", platform: "Wii",  condition: "CIB",                     price: 29.99,  storeId: "retro-vault-la" },
+
+      { title: "Pokémon FireRed",    platform: "GBA",  condition: "Cart only",              price: 119.99, storeId: "retro-vault-la" },
+      { title: "Pokémon Emerald",    platform: "GBA",  condition: "Cart only",              price: 229.99, storeId: "retro-vault-la" },
+
+      { title: "Pokémon HeartGold",  platform: "DS",   condition: "Cart only",              price: 149.99, storeId: "retro-vault-la" },
+      { title: "Pokémon Black 2",    platform: "DS",   condition: "Cart only",              price: 199.99, storeId: "retro-vault-la" },
+
+      { title: "Pokémon X",          platform: "3DS",  condition: "CIB",                    price: 39.99,  storeId: "retro-vault-la" },
+      { title: "Fire Emblem Awakening", platform: "3DS", condition: "CIB",                  price: 69.99,  storeId: "retro-vault-la" },
+
+      { title: "Final Fantasy VII",  platform: "PS1",  condition: "Black Label, CIB",       price: 79.99,  storeId: "retro-vault-la" },
+      { title: "Metal Gear Solid",   platform: "PS1",  condition: "CIB",                    price: 59.99,  storeId: "retro-vault-la" },
+
+      { title: "Silent Hill 2",      platform: "PS2",  condition: "Very Good",              price: 119.99, storeId: "retro-vault-la" },
+      { title: "Metal Gear Solid 3: Snake Eater", platform: "PS2", condition: "CIB",        price: 49.99,  storeId: "retro-vault-la" },
+      { title: "Kingdom Hearts II",  platform: "PS2",  condition: "CIB",                    price: 34.99,  storeId: "retro-vault-la" },
+
+      { title: "God of War II",      platform: "PS2",  condition: "CIB",                    price: 24.99,  storeId: "retro-vault-la" },
+
+      { title: "Persona 3 Portable", platform: "PSP",  condition: "CIB",                    price: 89.99,  storeId: "retro-vault-la" },
+      { title: "Crisis Core: Final Fantasy VII", platform: "PSP", condition: "CIB",        price: 69.99,  storeId: "retro-vault-la" },
+
+      { title: "The Last of Us",     platform: "PS3",  condition: "CIB",                    price: 19.99,  storeId: "retro-vault-la" },
+      { title: "Demon's Souls",      platform: "PS3",  condition: "CIB",                    price: 34.99,  storeId: "retro-vault-la" },
+
+      { title: "Bloodborne",         platform: "PS4",  condition: "CIB (Greatest Hits)",    price: 24.99,  storeId: "retro-vault-la" },
+      { title: "Persona 5",          platform: "PS4",  condition: "CIB (Steelbook)",        price: 39.99,  storeId: "retro-vault-la" },
+
+      { title: "The Legend of Zelda: Breath of the Wild", platform: "Switch", condition: "CIB", price: 49.99, storeId: "retro-vault-la" },
+      { title: "Super Smash Bros. Ultimate", platform: "Switch", condition: "CIB",          price: 54.99,  storeId: "retro-vault-la" },
+
+      { title: "Halo 2",             platform: "Xbox",      condition: "CIB",               price: 19.99,  storeId: "retro-vault-la" },
+      { title: "Halo 3",             platform: "Xbox 360",  condition: "CIB",               price: 14.99,  storeId: "retro-vault-la" },
+
+      // ==== INLAND GAMES: SMALLER MIX ====
+      { title: "Super Smash Bros. Melee", platform: "GameCube", condition: "Disc only",      price: 64.99, storeId: "inland-games-riv" },
+      { title: "Silent Hill 2",      platform: "PS2",  condition: "Good (Greatest Hits)",    price: 89.99, storeId: "inland-games-riv" },
+      { title: "God of War III",     platform: "PS3",  condition: "Very Good",               price: 14.99, storeId: "inland-games-riv" },
+      { title: "Call of Duty 4: Modern Warfare", platform: "Xbox 360", condition: "CIB",    price: 12.99, storeId: "inland-games-riv" },
+
+      // ==== OC BYTE EXCHANGE: MODERN / SWITCH / PS4 ====
+      { title: "The Last of Us Remastered", platform: "PS4", condition: "Like New",          price: 19.99, storeId: "oc-byte-exch" },
+      { title: "Mario Kart 8 Deluxe",      platform: "Switch", condition: "New (Sealed)",   price: 54.99, storeId: "oc-byte-exch" },
+      { title: "Animal Crossing: New Horizons", platform: "Switch", condition: "CIB",       price: 49.99, storeId: "oc-byte-exch" },
+      { title: "Spider-Man (2018)",        platform: "PS4", condition: "CIB",              price: 24.99, storeId: "oc-byte-exch" }
     ];
 
     // ======== HELPERS ========
