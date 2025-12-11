@@ -19,7 +19,7 @@ const inventory = {
  * Later we’ll move this to a database or config.
  */
 const phoneToStore = {
-  "+16266189789": "game_galaxy", // replace with your own phone for testing
+  "+16269229470": "game_galaxy", // replace with your own phone for testing
 };
 
 exports.handler = async (event) => {
