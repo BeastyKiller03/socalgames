@@ -261,6 +261,27 @@
       color: #9ca3af;
     }
 
+    /* ============= TOGGLE MORE LISTINGS ============= */
+    .toggle-row {
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 0;
+      cursor: pointer;
+      color: #9ca3af;
+    }
+
+    .toggle-btn:hover {
+      color: #e5e7eb;
+    }
+
     /* ============= FOOTER ============= */
     footer {
       text-align: center;
@@ -560,37 +581,82 @@
           tagsRow.appendChild(t);
         });
 
-        // Game list
+        // Game list (with "show more" behavior)
         const gameList = document.createElement("div");
         gameList.className = "game-list";
 
-        listings
-          .slice()
-          .sort((a, b) => a.price - b.price)
-          .forEach(item => {
-            const row = document.createElement("div");
-            row.className = "game-row";
+        // Sort listings by price (cheapest first)
+        const sortedListings = listings.slice().sort((a, b) => a.price - b.price);
 
-            const leftCol = document.createElement("div");
-            const title = document.createElement("div");
-            title.className = "game-title";
-            title.textContent = item.title;
+        const MAX_VISIBLE = 3;
+        const visibleListings = sortedListings.slice(0, MAX_VISIBLE);
+        const extraListings = sortedListings.slice(MAX_VISIBLE);
 
-            const sub = document.createElement("div");
-            sub.className = "game-sub";
-            sub.innerHTML = `<span class="game-pill">${item.platform}</span> · ${item.condition}`;
+        // helper to create a single game row
+        function createGameRow(item) {
+          const row = document.createElement("div");
+          row.className = "game-row";
 
-            leftCol.appendChild(title);
-            leftCol.appendChild(sub);
+          const leftCol = document.createElement("div");
+          const title = document.createElement("div");
+          title.className = "game-title";
+          title.textContent = item.title;
 
-            const rightCol = document.createElement("div");
-            rightCol.className = "game-price";
-            rightCol.textContent = formatPrice(item.price);
+          const sub = document.createElement("div");
+          sub.className = "game-sub";
+          sub.innerHTML = `<span class="game-pill">${item.platform}</span> · ${item.condition}`;
 
-            row.appendChild(leftCol);
-            row.appendChild(rightCol);
-            gameList.appendChild(row);
+          leftCol.appendChild(title);
+          leftCol.appendChild(sub);
+
+          const rightCol = document.createElement("div");
+          rightCol.className = "game-price";
+          rightCol.textContent = formatPrice(item.price);
+
+          row.appendChild(leftCol);
+          row.appendChild(rightCol);
+
+          return row;
+        }
+
+        // Add the always-visible rows
+        visibleListings.forEach(item => {
+          gameList.appendChild(createGameRow(item));
+        });
+
+        // If there are extra listings, add them in a collapsible container
+        let extraContainer = null;
+        if (extraListings.length > 0) {
+          extraContainer = document.createElement("div");
+          extraContainer.style.display = "none";
+
+          extraListings.forEach(item => {
+            extraContainer.appendChild(createGameRow(item));
           });
+
+          gameList.appendChild(extraContainer);
+
+          // Toggle button
+          const toggleRow = document.createElement("div");
+          toggleRow.className = "toggle-row";
+
+          const btn = document.createElement("button");
+          btn.className = "toggle-btn";
+          btn.type = "button";
+          btn.textContent = `Show all ${sortedListings.length} listings`;
+
+          let expanded = false;
+          btn.addEventListener("click", () => {
+            expanded = !expanded;
+            extraContainer.style.display = expanded ? "block" : "none";
+            btn.textContent = expanded
+              ? "Show fewer listings"
+              : `Show all ${sortedListings.length} listings`;
+          });
+
+          toggleRow.appendChild(btn);
+          gameList.appendChild(toggleRow);
+        }
 
         // Build card
         card.appendChild(header);
